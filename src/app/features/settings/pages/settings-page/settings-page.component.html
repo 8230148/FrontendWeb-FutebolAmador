@@ -1,0 +1,62 @@
+<section class="page">
+  <header class="page-header">
+    <div>
+      <h1 class="page-title">Definições</h1>
+      <p class="page-subtitle">
+        Ajusta as preferências da aplicação. Neste momento estas definições são locais ao
+        dispositivo.
+      </p>
+    </div>
+  </header>
+
+  <div class="card settings-card">
+    <h2 class="card-title">Geral</h2>
+
+    <div class="setting-row">
+      <div class="setting-row__info">
+        <h3>Modo escuro</h3>
+        <p>Alterna entre modo claro e escuro.</p>
+      </div>
+      <button type="button" class="btn-toggle" (click)="toggleDarkMode()">
+        <span class="btn-toggle__label"> {{ darkMode() ? 'Ativo' : 'Inativo' }} </span>
+      </button>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-row__info">
+        <h3>Notificações</h3>
+        <p>Permitir notificações (apenas efeito visual para já).</p>
+      </div>
+      <button type="button" class="btn-toggle" (click)="toggleNotifications()">
+        <span class="btn-toggle__label">
+          {{ notificationsEnabled() ? 'Ativas' : 'Inativas' }}
+        </span>
+      </button>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-row__info">
+        <h3>Idioma</h3>
+        <p>Idioma principal da interface.</p>
+      </div>
+      <div class="setting-row__actions">
+        <button
+          type="button"
+          class="btn-chip"
+          [class.btn-chip--active]="language() === 'pt'"
+          (click)="setLanguage('pt')"
+        >
+          Português
+        </button>
+        <button
+          type="button"
+          class="btn-chip"
+          [class.btn-chip--active]="language() === 'en'"
+          (click)="setLanguage('en')"
+        >
+          English
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
