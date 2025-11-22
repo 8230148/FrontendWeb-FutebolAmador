@@ -5,7 +5,7 @@ export interface PlayerDetails {
   phoneNumber: string;
   dateOfBirth: string;
   address: string;
-  position: string;
+  position: number;
   heigth: number;
   haveTeam: boolean;
   age: number;
@@ -21,6 +21,6 @@ export interface UpdatePlayerRequest {
   address: string;
   email: string;
   phone: string;
-  position: string;
+  position: number;
   height: number;
 }
