@@ -74,7 +74,7 @@ export class PlayerProfilePageComponent implements OnInit, OnDestroy {
         email: p.email,
         phone: p.phoneNumber,
         position: p.position,
-        height: p.height,
+        height: p.heigth,
       });
     }
   }

@@ -31,6 +31,7 @@
             <th>Equipa</th>
             <th>Posição</th>
             <th>Altura</th>
+            <th>Idade</th>
           </tr>
         </thead>
         <tbody>
@@ -40,9 +41,10 @@
             class="players-table__row"
           >
             <td>{{ player.name }}</td>
-            <td>{{ player.teamName || 'Sem equipa' }}</td>
+            <td>{{ player.haveTeam ? 'Sim' : 'Não' }}</td>
             <td>{{ player.position }}</td>
-            <td>{{ player.height }} cm</td>
+            <td>{{ player.heigth }} cm</td>
+            <td>{{ player.age }} anos</td>
           </tr>
         </tbody>
       </table>

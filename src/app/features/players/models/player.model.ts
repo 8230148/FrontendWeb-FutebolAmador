@@ -6,7 +6,9 @@ export interface PlayerDetails {
   dateOfBirth: string;
   address: string;
   position: string;
-  height: number;
+  heigth: number;
+  haveTeam: boolean;
+  age: number;
   idTeam?: string | null;
   teamName?: string | null;
   isAdmin?: boolean | null;
