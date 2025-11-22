@@ -7,12 +7,23 @@ export interface PlayerDetails {
   address: string;
   position: number;
   heigth: number;
+  height?: number;
   haveTeam: boolean;
-  age: number;
   idTeam?: string | null;
   teamName?: string | null;
   isAdmin?: boolean | null;
 }
+
+export interface PlayerListItem {
+  id: string;
+  name: string;
+  position: number;
+  heigth: number;
+  haveTeam: boolean;
+  age: number;
+  teamName?: string | null;
+}
+
 
 export interface UpdatePlayerRequest {
   playerId: string;

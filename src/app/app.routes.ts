@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { PlayerListPageComponent } from './features/players/pages/player-list/player-list-page.component';
 import { PlayerProfilePageComponent } from './features/players/pages/player-profile/player-profile-page.component';
 import { SettingsPageComponent } from './features/settings/pages/settings-page/settings-page.component';
+import { PlayerDetailsPageComponent } from './features/players/pages/player-details/player-details-page.component';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,10 @@ export const routes: Routes = [
   {
     path: 'players/:playerId',
     component: PlayerProfilePageComponent,
+  },
+  {
+    path: 'players/details/:playerId',
+    component: PlayerDetailsPageComponent,
   },
   {
     path: 'settings',

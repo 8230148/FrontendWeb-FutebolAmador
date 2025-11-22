@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { PlayerService } from '../../services/player.service';
 import { PlayerDetails } from '../../models/player.model';
 import { POSITION_MAP } from '../../../../shared/constants/position-map';
+import { PlayerListItem } from '../../models/player-list-item.model';
 
 @Component({
   selector: 'app-player-list-page',
@@ -17,26 +18,24 @@ export class PlayerListPageComponent {
   private readonly playerService = inject(PlayerService);
   private readonly router = inject(Router);
 
-  protected readonly players = signal<PlayerDetails[]>([]);
+  protected readonly players = signal<PlayerListItem[]>([]);
   protected readonly isLoading = signal<boolean>(false);
   protected readonly errorMessage = signal<string | null>(null);
   protected readonly searchTerm = signal<string>('');
   protected readonly POSITION_MAP = POSITION_MAP;
 
   protected readonly filteredPlayers = computed(() => {
-  const term = this.searchTerm().toLowerCase().trim();
+    const term = this.searchTerm().toLowerCase().trim();
+    const all = this.players().filter((p) => !p.haveTeam);
 
-  return this.players()
-    .filter((p) => !p.haveTeam)
-    .filter((p) => {
-      if (!term) return true;
-      return [
-        p.name,
-        POSITION_MAP[p.position]
-      ]
-        .filter(Boolean)
-        .some((field) => String(field).toLowerCase().includes(term));
-    });
+    if (!term) {
+      return all;
+    }
+
+    return all.filter((p) =>
+      p.name.toLowerCase().includes(term) ||
+      POSITION_MAP[p.position].toLowerCase().includes(term)
+    );
   });
 
   constructor() {

@@ -28,23 +28,17 @@
         <thead>
           <tr>
             <th>Nome</th>
-            <th>Equipa</th>
             <th>Posição</th>
-            <th>Altura</th>
-            <th>Idade</th>
           </tr>
         </thead>
         <tbody>
-          <tr
-            *ngFor="let player of filteredPlayers()"
-            (click)="openPlayer(player)"
-            class="players-table__row"
-          >
+          <tr *ngFor="let player of filteredPlayers()" class="players-table__row">
             <td>{{ player.name }}</td>
-            <td>{{ player.haveTeam ? 'Sim' : 'Não' }}</td>
             <td>{{ POSITION_MAP[player.position] }}</td>
-            <td>{{ player.heigth }} cm</td>
-            <td>{{ player.age }} anos</td>
+
+            <td>
+              <button class="details-btn" (click)="openDetails(player.id)">Ver detalhes</button>
+            </td>
           </tr>
         </tbody>
       </table>

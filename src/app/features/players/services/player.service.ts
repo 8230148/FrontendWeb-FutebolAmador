@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { PlayerDetails, UpdatePlayerRequest } from '../models/player.model';
 import { environment } from '../../../environments/environment';
+import { PlayerListItem } from '../models/player-list-item.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +12,8 @@ export class PlayerService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = `${environment.apiBaseUrl}/Player`;
 
-  getPlayers(): Observable<PlayerDetails[]> {
-    return this.http.get<PlayerDetails[]>(`${this.baseUrl}/listPlayers`);
+  getPlayers(): Observable<PlayerListItem[]> {
+    return this.http.get<PlayerListItem[]>(`${this.baseUrl}/listPlayers`);
   }
 
   getPlayerById(playerId: string): Observable<PlayerDetails> {

@@ -149,12 +149,10 @@ label {
 
 footer {
   background-color: var(--bg);
-  /* color: white; */
   padding: 20px 0;
-  bottom: 0;
-  position: fixed;
-  width: 98%;
+  width: 100%;
   text-align: center;
+  position: static;
 }
 
 .footer-content {
