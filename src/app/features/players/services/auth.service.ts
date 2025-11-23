@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -18,6 +19,24 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return !!this.getToken();
+  }
+
+  decodeToken(): any {
+    const token = this.getToken();
+    if (token) {
+      return jwtDecode(token);
+    }
+    return null;
+  }
+
+  isAdmin(): boolean {
+    const decodedToken = this.decodeToken();
+    return decodedToken?.isAdmin || false;
+  }
+
+  hasTeam(): boolean {
+    const decodedToken = this.decodeToken();
+    return decodedToken?.idTeam != null;
   }
 
   login(email: string, password: string): Observable<any> {

@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   standalone: true,
-  imports: [ReactiveFormsModule]
+  imports: [ReactiveFormsModule],
 })
 export class LoginComponent {
   private authService = inject(AuthService);
@@ -28,6 +28,10 @@ export class LoginComponent {
 
     this.authService.login(email, password).subscribe({
       next: (response) => {
+        console.log(response);
+        localStorage.setItem('access_token', response.firebaseLoginResponseDto.idToken);
+        localStorage.setItem('user_id', response.firebaseLoginResponseDto.localId);
+
         this.router.navigate(['/players/me']);
       },
       error: (err) => {

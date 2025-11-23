@@ -16,4 +16,12 @@ export class SidebarComponent {
   get isAuthenticated(): boolean {
     return this.authService.isAuthenticated();
   }
+
+  get isAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
+
+  get hasTeam(): boolean {
+    return this.authService.hasTeam();
+  }
 }

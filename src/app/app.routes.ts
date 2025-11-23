@@ -25,11 +25,13 @@ export const routes: Routes = [
   {
     path: 'logout',
     component: LogoutComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'players',
     component: PlayerListPageComponent,
     canActivate: [AuthGuard],
+    data: { isAdmin: true }
   },
   {
     path: 'players/me',
