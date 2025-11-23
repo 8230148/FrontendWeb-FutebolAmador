@@ -10,11 +10,11 @@
     </div>
 
     <div class="page-header__actions">
-      <button type="button" class="btn btn-secondary" (click)="toggleEdit()">
+      <button *ngIf="isOwnProfile()" type="button" class="btn btn-secondary" (click)="toggleEdit()">
         {{ isEditMode() ? 'Cancelar' : 'Editar perfil' }}
       </button>
 
-      <button type="button" class="btn btn-danger" (click)="deleteAccount()" [disabled]="isSaving()">
+      <button *ngIf="isOwnProfile()" type="button" class="btn btn-danger" (click)="deleteAccount()" [disabled]="isSaving()">
         Apagar conta
       </button>
     </div>
@@ -59,7 +59,7 @@
         </div>
       </dl>
 
-      <form class="form" [formGroup]="form" *ngIf="isEditMode() && !isLoading()">
+      <form class="form" [formGroup]="form" *ngIf="isOwnProfile() && isEditMode() && !isLoading()">
         <div class="form-grid">
           <label class="form-field">
             <span>Nome</span>
@@ -109,7 +109,7 @@
       </form>
     </div>
 
-    <aside class="card side-card">
+    <aside class="card side-card" *ngIf="isOwnProfile()">
       <h2 class="card-title">Gestão de equipa</h2>
 
       <p class="side-card__text" *ngIf="hasTeam(); else noTeamSide">

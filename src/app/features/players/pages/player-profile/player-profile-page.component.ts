@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { PlayerDetails, UpdatePlayerRequest } from '../../models/player.model';
 import { PlayerService } from '../../services/player.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-player-profile-page',
@@ -26,12 +27,18 @@ export class PlayerProfilePageComponent implements OnInit, OnDestroy {
   protected readonly isEditMode = signal<boolean>(false);
   protected readonly player = signal<PlayerDetails | null>(null);
 
+  private auth = inject(AuthService);
+
   protected form!: FormGroup;
 
   private sub?: Subscription;
 
   protected readonly hasTeam = computed(
     () => !!this.player() && !!this.player()!.idTeam && !!this.player()!.teamName,
+  );
+
+  protected readonly isOwnProfile = computed(() =>
+    this.player()?.playerId === this.auth.getCurrentPlayerId()
   );
 
   ngOnInit(): void {
