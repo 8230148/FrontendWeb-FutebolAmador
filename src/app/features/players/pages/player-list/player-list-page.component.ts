@@ -3,6 +3,8 @@ import { Component, computed, effect, inject, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { PlayerService } from '../../services/player.service';
 import { PlayerDetails } from '../../models/player.model';
+import { POSITION_MAP } from '../../../../shared/constants/position-map';
+import { PlayerListItem } from '../../models/player-list-item.model';
 
 @Component({
   selector: 'app-player-list-page',
@@ -11,22 +13,28 @@ import { PlayerDetails } from '../../models/player.model';
   templateUrl: './player-list-page.component.html',
   styleUrl: './player-list-page.component.css',
 })
+
 export class PlayerListPageComponent {
   private readonly playerService = inject(PlayerService);
   private readonly router = inject(Router);
 
-  protected readonly players = signal<PlayerDetails[]>([]);
+  protected readonly players = signal<PlayerListItem[]>([]);
   protected readonly isLoading = signal<boolean>(false);
   protected readonly errorMessage = signal<string | null>(null);
   protected readonly searchTerm = signal<string>('');
+  protected readonly POSITION_MAP = POSITION_MAP;
 
   protected readonly filteredPlayers = computed(() => {
     const term = this.searchTerm().toLowerCase().trim();
-    if (!term) return this.players();
-    return this.players().filter((p) =>
-      [p.name, p.teamName, p.position]
-        .filter(Boolean)
-        .some((field) => field!.toLowerCase().includes(term)),
+    const all = this.players().filter((p) => !p.haveTeam);
+
+    if (!term) {
+      return all;
+    }
+
+    return all.filter((p) =>
+      p.name.toLowerCase().includes(term) ||
+      POSITION_MAP[p.position].toLowerCase().includes(term)
     );
   });
 
@@ -57,5 +65,9 @@ export class PlayerListPageComponent {
         this.isLoading.set(false);
       },
     });
+  }
+
+  protected openDetails(playerId: string): void {
+    this.router.navigate(['/players/details', playerId]);
   }
 }

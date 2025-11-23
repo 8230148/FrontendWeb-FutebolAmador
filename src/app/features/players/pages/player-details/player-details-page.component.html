@@ -1,0 +1,32 @@
+<section class="page">
+
+  <div *ngIf="isLoading()" class="state state--loading">A carregar jogador…</div>
+
+  <div *ngIf="errorMessage()" class="state state--error">
+    {{ errorMessage() }}
+  </div>
+
+  <div *ngIf="player() as p">
+    <h1 class="page-title">{{ p.name }}</h1>
+    <p class="page-subtitle">Detalhes do jogador</p>
+
+    <div class="details-card">
+      <p><strong>Email:</strong> {{ p.email }}</p>
+      <p><strong>Telemóvel:</strong> {{ p.phoneNumber }}</p>
+      <p><strong>Data de nascimento:</strong> {{ p.dateOfBirth }}</p>
+      <p><strong>Morada:</strong> {{ p.address }}</p>
+      <p><strong>Posição:</strong> {{ POSITION_MAP[p.position] }}</p>
+      <p><strong>Altura:</strong> {{ p.height }} cm</p>
+
+      <p>
+        <strong>Equipa:</strong>
+        {{ p.teamName ?? 'Sem equipa' }}
+      </p>
+
+      <p>
+        <strong>Administrador:</strong>
+        {{ p.isAdmin ? 'Sim' : 'Não' }}
+      </p>
+    </div>
+  </div>
+</section>

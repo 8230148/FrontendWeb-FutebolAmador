@@ -5,12 +5,25 @@ export interface PlayerDetails {
   phoneNumber: string;
   dateOfBirth: string;
   address: string;
-  position: string;
-  height: number;
+  position: number;
+  heigth: number;
+  height?: number;
+  haveTeam: boolean;
   idTeam?: string | null;
   teamName?: string | null;
   isAdmin?: boolean | null;
 }
+
+export interface PlayerListItem {
+  id: string;
+  name: string;
+  position: number;
+  heigth: number;
+  haveTeam: boolean;
+  age: number;
+  teamName?: string | null;
+}
+
 
 export interface UpdatePlayerRequest {
   playerId: string;
@@ -19,6 +32,6 @@ export interface UpdatePlayerRequest {
   address: string;
   email: string;
   phone: string;
-  position: string;
+  position: number;
   height: number;
 }
