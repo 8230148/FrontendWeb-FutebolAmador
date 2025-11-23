@@ -4,12 +4,17 @@ import { PlayerProfilePageComponent } from './features/players/pages/player-prof
 import { SettingsPageComponent } from './features/settings/pages/settings-page/settings-page.component';
 import { PlayerProfileRedirectComponent } from './features/players/pages/player-profile/player-profile-redirect/player-profile-redirect.component';
 import { LoginComponent } from './features/players/pages/login/login.component';
+import { SignupComponent } from './features/players/pages/signup/signup.component';
 
 export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
     redirectTo: 'players',
+  },
+  {
+    path: 'signup',
+    component: SignupComponent,
   },
   {
     path: 'login',
