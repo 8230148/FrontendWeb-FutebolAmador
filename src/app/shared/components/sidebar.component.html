@@ -17,7 +17,7 @@
       Definições
     </a>
 
-    <a routerLink="/signup" routerLinkActive="active" class="sidebar__link">
+    <a *ngIf="!isAuthenticated" routerLink="/signup" routerLinkActive="active" class="sidebar__link">
       Criar Conta
     </a>
 
