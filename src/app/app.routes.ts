@@ -5,6 +5,8 @@ import { SettingsPageComponent } from './features/settings/pages/settings-page/s
 import { PlayerProfileRedirectComponent } from './features/players/pages/player-profile/player-profile-redirect/player-profile-redirect.component';
 import { LoginComponent } from './features/players/pages/login/login.component';
 import { SignupComponent } from './features/players/pages/signup/signup.component';
+import { LogoutComponent } from './features/players/pages/login/logout.component';
+import { AuthGuard } from './shared/components/auth.guard';
 
 export const routes: Routes = [
   {
@@ -21,16 +23,23 @@ export const routes: Routes = [
     component: LoginComponent,
   },
   {
+    path: 'logout',
+    component: LogoutComponent,
+  },
+  {
     path: 'players',
     component: PlayerListPageComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'players/me',
     component: PlayerProfileRedirectComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'players/details/:playerId',
     component: PlayerProfilePageComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'settings',

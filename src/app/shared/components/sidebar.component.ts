@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../features/players/services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,4 +10,10 @@ import { CommonModule } from '@angular/common';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
 })
-export class SidebarComponent {}
+export class SidebarComponent {
+  private authService = inject(AuthService);
+
+  get isAuthenticated(): boolean {
+    return this.authService.isAuthenticated();
+  }
+}
