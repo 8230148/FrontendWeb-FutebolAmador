@@ -5,6 +5,10 @@
   font-family: 'Inter', 'Roboto', sans-serif;
 }
 
+a, button {
+  cursor: pointer;
+}
+
 :root {
   --primary: #6a47ce; /* Purple buttons, highlights */
   --primary-light: #9180d9;
@@ -19,29 +23,15 @@
 
 body {
   margin: 0;
-  background: #f3f4f6;
-  background-color: darkgray;
+  background-color: #f3f4f6;
   color: var(--text-dark);
+
   background-image: url('/assets/amateurFootbalBGImage.jpeg');
   background-size: cover;
-  background-blend-mode: multiply;
-}
+  background-position: center;
+  background-repeat: no-repeat;
 
-header {
-  background-color: var(--bg);
-  padding: 20px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.horizontal-container {
-  max-width: 1200px;
-  max-height: 25px;
-  margin: auto;
-  padding: 0 20px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-attachment: fixed;
 }
 
 header .logo {
@@ -49,27 +39,6 @@ header .logo {
   font-weight: bold;
   /* color: white; */
   text-decoration: none;
-}
-
-header nav ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-header nav ul li {
-  display: inline-block;
-}
-
-header nav ul li a {
-  /* color: white; */
-  text-decoration: none;
-  font-size: 1rem;
-  transition: 0.2s;
-}
-
-header nav a:hover {
-    color: var(--primary);
 }
 
 button, .btn {
