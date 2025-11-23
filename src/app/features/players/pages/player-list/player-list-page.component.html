@@ -17,31 +17,45 @@
   </header>
 
   <div class="card">
-    <div *ngIf="isLoading()" class="state state--loading">A carregar jogadores…</div>
+    <div *ngIf="isLoading()" class="state state--loading">
+      A carregar jogadores…
+    </div>
 
     <div *ngIf="errorMessage()" class="state state--error">
       {{ errorMessage() }}
     </div>
 
     <div *ngIf="!isLoading() && !errorMessage()">
-      <table class="players-table" *ngIf="filteredPlayers().length; else noPlayers">
+      <table class="players-table" *ngIf="visiblePlayers().length; else noPlayers">
         <thead>
           <tr>
             <th>Nome</th>
             <th>Posição</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let player of filteredPlayers()" class="players-table__row">
+          <tr *ngFor="let player of visiblePlayers()" class="players-table__row">
             <td>{{ player.name }}</td>
             <td>{{ POSITION_MAP[player.position] }}</td>
 
             <td>
-              <button class="details-btn" (click)="openDetails(player.id)">Ver detalhes</button>
+              <button class="details-btn" (click)="openDetails(player.id)">
+                Ver detalhes
+              </button>
             </td>
           </tr>
         </tbody>
       </table>
+
+      <div
+        class="load-more-container"
+        *ngIf="visiblePlayers().length < filteredPlayers().length"
+      >
+        <button class="load-more-btn" (click)="loadMore()">
+          Carregar mais
+        </button>
+      </div>
 
       <ng-template #noPlayers>
         <div class="state">Não há jogadores para apresentar.</div>

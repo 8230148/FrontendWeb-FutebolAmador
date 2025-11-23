@@ -23,6 +23,11 @@ export class PlayerListPageComponent {
   protected readonly errorMessage = signal<string | null>(null);
   protected readonly searchTerm = signal<string>('');
   protected readonly POSITION_MAP = POSITION_MAP;
+  protected readonly playersToShow = signal<number>(10);
+  
+  protected readonly visiblePlayers = computed(() =>
+    this.filteredPlayers().slice(0, this.playersToShow())
+  );
 
   protected readonly filteredPlayers = computed(() => {
     const term = this.searchTerm().toLowerCase().trim();
@@ -65,6 +70,10 @@ export class PlayerListPageComponent {
         this.isLoading.set(false);
       },
     });
+  }
+
+  protected loadMore(): void {
+    this.playersToShow.update(v => v + 10);
   }
 
   protected openDetails(playerId: string): void {
